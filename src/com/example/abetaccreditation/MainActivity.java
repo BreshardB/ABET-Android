@@ -10,11 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
-import com.mongodb.*;
+import com.mongodb.MongoClient;
 
 public class MainActivity extends ActionBarActivity {
 	
-	
+	MongoClient mongo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

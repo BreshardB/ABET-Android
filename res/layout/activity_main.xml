@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Test Button" />
+        android:text="@string/test_button" />
 
     <TextView
         android:id="@+id/textView1"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Main Menu"
+        android:text="@string/main_menu"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:text="Login" />
+        android:text="@string/login" />
 
     <Button
         android:id="@+id/sign_up"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/login"
         android:layout_below="@+id/login"
-        android:text="Sign up" />
+        android:text="@string/sign_up" />
 
     <Button
         android:id="@+id/create_form"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/sign_up"
         android:layout_below="@+id/sign_up"
-        android:text="Create Form" />
+        android:text="@string/create" />
 
     <Button
         android:id="@+id/ABET_link"
@@ -55,6 +55,12 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/create_form"
         android:layout_below="@+id/create_form"
-        android:text="ABET Home Page" />
+        android:text="@string/home_page" />
+    
+    <TextView 
+        android:id="@+id/data_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ABET_link"/>
 
 </RelativeLayout>

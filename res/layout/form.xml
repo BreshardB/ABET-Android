@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res/com.example.abet"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/class_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="class code"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/instructor_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/class_code"
+        android:text="Instructor:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/instructor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/instructor_label"
+        android:layout_alignBottom="@+id/instructor_label"
+        android:layout_toRightOf="@+id/class_code"
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="semester"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/outome_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/instructor_label"
+        android:text="Outcome:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/outcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/outome_label"
+        android:layout_alignBottom="@+id/outome_label"
+        android:layout_toRightOf="@+id/outome_label"
+        android:text="blah blah blah blah blah blah blah blah"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <LinearLayout 
+        android:id="@+id/title_row"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/row1"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        
+        	<TextView 
+        	    android:id="@+id/blank_space"
+        	    android:layout_width="0dp"
+        	    android:layout_height="wrap_content"
+        	    android:layout_weight=".20"/>
+        	
+        	<TextView 
+        	    android:id="@+id/weak_score"
+        	    android:layout_width="0dp"
+        	    android:layout_height="wrap_content"
+        	    android:layout_gravity="center_vertical"
+        	    android:layout_weight=".20"
+        	    android:text="1(Weak)"/>
+        	
+        	<TextView 
+        	    android:id="@+id/poor_score"
+        	    android:layout_width="0dp"
+        	    android:layout_height="wrap_content"
+        	    android:layout_gravity="center_vertical"
+        	    android:layout_weight=".20"
+        	    android:text="2(Poor)"/>
+        	
+        	<TextView 
+        	    android:id="@+id/good_score"
+        	    android:layout_width="0dp"
+        	    android:layout_height="wrap_content"
+        	    android:layout_gravity="center_vertical"
+        	    android:layout_weight=".20"
+        	    android:text="3(Good)"/>
+        	
+        	<TextView 
+        	    android:id="@+id/excellent_score"
+        	    android:layout_width="0dp"
+        	    android:layout_height="wrap_content"
+        	    android:layout_gravity="center_vertical"
+        	    android:layout_weight=".20"
+        	    android:text="4(Excellent)"/>
+        	
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/row1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/row2"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <TextView
+            android:id="@+id/derive_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RadioButton11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+        <RadioButton
+            android:id="@+id/RadioButton12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+        <RadioButton
+            android:id="@+id/RadioButton13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+        
+        <RadioButton
+            android:id="@+id/RadioButton14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <TextView
+            android:id="@+id/identify_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/radioButton21"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+        <RadioButton
+            android:id="@+id/radioButton22"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+        <RadioButton
+            android:id="@+id/radioButton23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+        
+        <RadioButton
+            android:id="@+id/RadioButton24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/row2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <TextView
+            android:id="@+id/design_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RadioButton31"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+        <RadioButton
+            android:id="@+id/RadioButton32"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+
+        <RadioButton
+            android:id="@+id/RadioButton33"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+        
+        <RadioButton
+            android:id="@+id/RadioButton34"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".20" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/evaluation_basis_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/row3"
+        android:text="The above evaluation is based on:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText 
+        android:id="@+id/evaluation_basis"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/evaluation_basis_label"
+        android:inputType="text"/>
+
+</RelativeLayout>

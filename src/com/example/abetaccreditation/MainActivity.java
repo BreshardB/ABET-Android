@@ -1,5 +1,5 @@
 package com.example.abetaccreditation;
-
+//
 import java.net.UnknownHostException;
 
 import android.os.Bundle;
@@ -79,4 +79,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			}
 		}
 	}
+
+	public void goToLogin(View view){
+    	Intent intent = new Intent(this, Login.class);
+    	startActivity(intent);
+    }
+    
+    public void createForm(View view){
+    	Intent intent = new Intent(this, Form.class);
+    	startActivity(intent);
+    }
 }

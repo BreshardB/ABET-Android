@@ -15,6 +15,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
@@ -26,7 +27,8 @@ public class Form extends Activity implements AsyncResponse{
 	
 	TextView instructorName;
 	TextView outcomeText;
-	TableLayout abetTable;
+	TableLayout tableCAC;
+	TableLayout tableEAC;
 	
 	String major;
 	StringBuilder jsonArray;
@@ -142,56 +144,109 @@ public class Form extends Activity implements AsyncResponse{
 			JSONArray courseRubricEAC = (JSONArray)rubrics.getJSONObject(0).getJSONArray("rubricsEAC");
 			JSONArray courseRubricCAC = (JSONArray)rubrics.getJSONObject(0).getJSONArray("rubricsCAC");
 			
-			abetTable = (TableLayout)findViewById(R.id.abet_table);
+			tableCAC = (TableLayout)findViewById(R.id.CAC_table);
+			tableEAC = (TableLayout)findViewById(R.id.EAC_table);
 			
-			TableRow headings = new TableRow(this);
-			headings.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			TableRow headingsCAC = new TableRow(this);
+			headingsCAC.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			TableRow headingsEAC = new TableRow(this);
+			headingsEAC.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			
 			//Columns headings for the table
-			TextView hDescription = new TextView(this.getApplicationContext());
-			headings.addView(hDescription);
+			TextView hDescriptionCAC = new TextView(this.getApplicationContext());
+			headingsCAC.addView(hDescriptionCAC);
+			TextView hDescriptionEAC = new TextView(this.getApplicationContext());
+			headingsEAC.addView(hDescriptionEAC);
 			
-			TextView hUnsatisfactory = new TextView(this.getApplicationContext());	
-			hUnsatisfactory.setText("Unsatisfactory");
-			headings.addView(hUnsatisfactory);
+			TextView hUnsatisfactoryCAC = new TextView(this.getApplicationContext());	
+			hUnsatisfactoryCAC.setText("Unsatisfactory");
+			headingsCAC.addView(hUnsatisfactoryCAC);
+			TextView hUnsatisfactoryEAC = new TextView(this.getApplicationContext());	
+			hUnsatisfactoryEAC.setText("Unsatisfactory");
+			headingsEAC.addView(hUnsatisfactoryEAC);
 			
-			TextView hDeveloping = new TextView(this.getApplicationContext());
-			hDeveloping.setText("Developing");
-			headings.addView(hDeveloping);
+			TextView hDevelopingCAC = new TextView(this.getApplicationContext());
+			hDevelopingCAC.setText("Developing");
+			headingsCAC.addView(hDevelopingCAC);
+			TextView hDevelopingEAC = new TextView(this.getApplicationContext());
+			hDevelopingEAC.setText("Developing");
+			headingsEAC.addView(hDevelopingEAC);
 			
-			TextView hSatisfactory = new TextView(this.getApplicationContext());
-			hSatisfactory.setText("Satisfactory");
-			headings.addView(hSatisfactory);
+			TextView hSatisfactoryCAC = new TextView(this.getApplicationContext());
+			hSatisfactoryCAC.setText("Satisfactory");
+			headingsCAC.addView(hSatisfactoryCAC);
+			TextView hSatisfactoryEAC = new TextView(this.getApplicationContext());
+			hSatisfactoryEAC.setText("Satisfactory");
+			headingsEAC.addView(hSatisfactoryEAC);
 			
-			TextView hExemplary = new TextView(this.getApplicationContext());
-			hExemplary.setText("Exemplary");
-			headings.addView(hExemplary);
+			TextView hExemplaryCAC = new TextView(this.getApplicationContext());
+			hExemplaryCAC.setText("Exemplary");
+			headingsCAC.addView(hExemplaryCAC);
+			TextView hExemplaryEAC = new TextView(this.getApplicationContext());
+			hExemplaryEAC.setText("Exemplary");
+			headingsEAC.addView(hExemplaryEAC);
 			
-			abetTable.addView(headings);
 			
-			
-			for(int i = 0; i < courseRubricEAC.length(); i++){
-				TableRow row = new TableRow(this);
-				row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			//Adding descriptions to EAC table
+			if(courseRubricEAC.length() != 0){
+				tableEAC.addView(headingsEAC);
 				
-				TextView description = new TextView(this);
-				description.setText(courseRubricEAC.getString(i));
-				row.addView(description);
+				for(int i = 0; i < courseRubricEAC.length(); i++){
+					TableRow row = new TableRow(this);
+					row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+					
+					TextView description = new TextView(this);
+					description.setText(courseRubricEAC.getString(i));
+					row.addView(description);
+					
+					//Table cells for entering values
+					EditText eUnsatisfactory = new EditText(this);
+					eUnsatisfactory.setInputType(InputType.TYPE_CLASS_NUMBER);
+					row.addView(eUnsatisfactory);
+					
+					EditText eDeveloping = new EditText(this);
+					row.addView(eDeveloping);
+					
+					EditText eSatisfactory = new EditText(this);
+					row.addView(eSatisfactory);
+					
+					EditText eExemplary = new EditText(this);
+					row.addView(eExemplary);
+					
+					tableEAC.addView(row);
+					
+				}
+			}
+			
+			
+			//Adding descriptions to CAC table	
+			if(courseRubricCAC.length() != 0){	
+				tableCAC.addView(headingsCAC);
 				
-				//Table cells for entering values
-				EditText eUnsatisfactory = new EditText(this);
-				row.addView(eUnsatisfactory);
-				
-				EditText eDeveloping = new EditText(this);
-				row.addView(eDeveloping);
-				
-				EditText eSatisfactory = new EditText(this);
-				row.addView(eSatisfactory);
-				
-				EditText eExemplary = new EditText(this);
-				row.addView(eExemplary);
-				
-				abetTable.addView(row);
+				for(int i = 0; i < courseRubricCAC.length(); i++){
+					TableRow row = new TableRow(this);
+					row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+					
+					TextView description = new TextView(this);
+					description.setText(courseRubricEAC.getString(i));
+					row.addView(description);
+					
+					//Table cells for entering values
+					EditText eUnsatisfactory = new EditText(this);
+					row.addView(eUnsatisfactory);
+					
+					EditText eDeveloping = new EditText(this);
+					row.addView(eDeveloping);
+					
+					EditText eSatisfactory = new EditText(this);
+					row.addView(eSatisfactory);
+					
+					EditText eExemplary = new EditText(this);
+					row.addView(eExemplary);
+					
+					tableCAC.addView(row);
+					
+				}
 			}
 			
 		} catch (JSONException e) {

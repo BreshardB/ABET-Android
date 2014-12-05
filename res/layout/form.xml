@@ -83,27 +83,51 @@
     </LinearLayout>
     
     <TableLayout 
-        android:id="@+id/abet_table"
+        android:id="@+id/CAC_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_row"
+        android:layout_below="@id/outcome_label"
         android:stretchColumns="*"/>
-
+    
     <TextView
-        android:id="@+id/evaluation_basis_label"
+        android:id="@+id/evaluation_basis_label1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/abet_table"
+        android:layout_below="@id/CAC_table"
         android:text="The above evaluation is based on:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
-        android:id="@+id/evaluation_basis"
+        android:id="@+id/evaluation_basis1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/evaluation_basis_label"
+        android:layout_below="@id/evaluation_basis_label1"
+        android:inputType="text" />
+    
+    <TableLayout 
+        android:id="@+id/EAC_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/evaluation_basis1"
+        android:stretchColumns="*"/>
+
+    <TextView
+        android:id="@+id/evaluation_basis_label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/EAC_table"
+        android:text="The above evaluation is based on:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/evaluation_basis2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/evaluation_basis_label2"
         android:inputType="text" />
 
 </RelativeLayout>

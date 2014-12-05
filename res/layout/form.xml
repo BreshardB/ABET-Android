@@ -45,7 +45,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/outome_label"
+        android:id="@+id/outcome_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -57,9 +57,9 @@
         android:id="@+id/outcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/outome_label"
-        android:layout_alignBottom="@id/outome_label"
-        android:layout_toRightOf="@id/outome_label"
+        android:layout_alignBaseline="@id/outcome_label"
+        android:layout_alignBottom="@id/outcome_label"
+        android:layout_toRightOf="@id/outcome_label"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
@@ -80,179 +80,21 @@
             android:text="Toggle Major"
             android:textSize="12sp" 
             android:onClick="toggleMajor"/>
-
-        <TextView
-            android:id="@+id/weak_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="1(Weak)" />
-
-        <TextView
-            android:id="@+id/poor_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="2(Poor)" />
-
-        <TextView
-            android:id="@+id/good_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="3(Good)" />
-
-        <TextView
-            android:id="@+id/excellent_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="4(Excellent)" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/row1"
-        android:layout_width="fill_parent"
+    
+    <TableLayout 
+        android:id="@+id/abet_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/row2"
-        android:layout_alignParentLeft="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="1" >
-
-        <TextView
-            android:id="@+id/outcome1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <RadioButton
-            android:id="@+id/RadioButton11"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton12"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton13"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton14"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/row2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="1" >
-
-        <TextView
-            android:id="@+id/outcome2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <RadioButton
-            android:id="@+id/radioButton21"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/radioButton22"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/radioButton23"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton24"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/row3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/row2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="1" >
-
-        <TextView
-            android:id="@+id/outcome3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight=".20"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <RadioButton
-            android:id="@+id/RadioButton31"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton32"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton33"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-
-        <RadioButton
-            android:id="@+id/RadioButton34"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".20" />
-    </LinearLayout>
+        android:layout_below="@id/title_row"
+        android:stretchColumns="*"/>
 
     <TextView
         android:id="@+id/evaluation_basis_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/row3"
+        android:layout_below="@id/abet_table"
         android:text="The above evaluation is based on:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -263,14 +105,5 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/evaluation_basis_label"
         android:inputType="text" />
-    
-    <TableLayout 
-        android:id="@+id/abet_table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/evaluation_basis"
-        android:stretchColumns="*">
-        
-    </TableLayout>
 
 </RelativeLayout>

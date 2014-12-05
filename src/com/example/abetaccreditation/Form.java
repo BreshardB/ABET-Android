@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -55,13 +56,6 @@ public class Form extends Activity implements AsyncResponse{
 	}
 	
 	public void setOutcomes(){
-		TextView outcome1 = (TextView)findViewById(R.id.outcome1);
-		TextView outcome2 = (TextView)findViewById(R.id.outcome2);
-		TextView outcome3 = (TextView)findViewById(R.id.outcome3);
-		
-		outcome1.setText(major);
-		outcome2.setText(major);
-		outcome3.setText(major);
 		
 		URL url;
 		jsonArray = new StringBuilder();
@@ -150,34 +144,55 @@ public class Form extends Activity implements AsyncResponse{
 			
 			abetTable = (TableLayout)findViewById(R.id.abet_table);
 			
-			TableRow tableRow = new TableRow(this);
-			tableRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			TableRow headings = new TableRow(this);
+			headings.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			
+			//Columns headings for the table
+			TextView hDescription = new TextView(this.getApplicationContext());
+			headings.addView(hDescription);
+			
+			TextView hUnsatisfactory = new TextView(this.getApplicationContext());	
+			hUnsatisfactory.setText("Unsatisfactory");
+			headings.addView(hUnsatisfactory);
+			
+			TextView hDeveloping = new TextView(this.getApplicationContext());
+			hDeveloping.setText("Developing");
+			headings.addView(hDeveloping);
+			
+			TextView hSatisfactory = new TextView(this.getApplicationContext());
+			hSatisfactory.setText("Satisfactory");
+			headings.addView(hSatisfactory);
+			
+			TextView hExemplary = new TextView(this.getApplicationContext());
+			hExemplary.setText("Exemplary");
+			headings.addView(hExemplary);
+			
+			abetTable.addView(headings);
 			
 			
-			TextView description = new TextView(this.getApplicationContext());
-			tableRow.addView(description);
-			TextView unsatisfactory = new TextView(this.getApplicationContext());
-			unsatisfactory.setText("Unsatisfactory");
-			tableRow.addView(unsatisfactory);
-			TextView developing = new TextView(this.getApplicationContext());
-			developing.setText("Developing");
-			tableRow.addView(developing);
-			TextView satisfactory = new TextView(this.getApplicationContext());
-			satisfactory.setText("Satisfactory");
-			tableRow.addView(satisfactory);
-			TextView exemplary = new TextView(this.getApplicationContext());
-			exemplary.setText("Exemplary");
-			tableRow.addView(exemplary);
-			
-			abetTable.addView(tableRow);
-			
-			
-			/*for(int i = 0; i < courseRubricEAC.length(); i++){
-				TableRow tableRow = new TableRow(this);
-				tableRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			for(int i = 0; i < courseRubricEAC.length(); i++){
+				TableRow row = new TableRow(this);
+				row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 				
+				TextView description = new TextView(this);
+				description.setText(courseRubricEAC.getString(i));
+				row.addView(description);
 				
-			}*/
+				//Table cells for entering values
+				EditText eUnsatisfactory = new EditText(this);
+				row.addView(eUnsatisfactory);
+				
+				EditText eDeveloping = new EditText(this);
+				row.addView(eDeveloping);
+				
+				EditText eSatisfactory = new EditText(this);
+				row.addView(eSatisfactory);
+				
+				EditText eExemplary = new EditText(this);
+				row.addView(eExemplary);
+				
+				abetTable.addView(row);
+			}
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

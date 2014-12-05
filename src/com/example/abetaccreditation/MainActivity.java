@@ -70,16 +70,16 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	public void onClick(View v) {
 		if(v.getId() == R.id.test) {
 			
-		URL url;
-			
-		try {
-			url = new URL("http://104.155.193.216:3000/courses/courseList/cse1341");
-
-			new GetCourseList().execute(url, null, null);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			URL url;
+				
+			try {
+				url = new URL("http://104.155.193.216:3000/courses/courseList/cse1341");
+	
+				new GetCourseList().execute(url, null, null);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 	}

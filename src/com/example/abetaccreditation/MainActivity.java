@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -114,4 +114,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	    	dataOutput.setText(result);
 	    }
 	 }
+
+	public void goToLogin(View view){
+    	Intent intent = new Intent(this, Login.class);
+    	startActivity(intent);
+    }
+    
+    public void createForm(View view){
+    	Intent intent = new Intent(this, Form.class);
+    	startActivity(intent);
+    }
 }

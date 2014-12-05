@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res/com.example.abet"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context=".Login" >
 
     <TextView
         android:id="@+id/class_code"
@@ -60,8 +62,8 @@
         android:layout_toRightOf="@+id/outome_label"
         android:text="blah blah blah blah blah blah blah blah"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
-    <LinearLayout 
+
+    <LinearLayout
         android:id="@+id/title_row"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -69,48 +71,50 @@
         android:layout_alignParentLeft="true"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="1">
-        
-        	<TextView 
-        	    android:id="@+id/blank_space"
-        	    android:layout_width="0dp"
-        	    android:layout_height="wrap_content"
-        	    android:layout_weight=".20"/>
-        	
-        	<TextView 
-        	    android:id="@+id/weak_score"
-        	    android:layout_width="0dp"
-        	    android:layout_height="wrap_content"
-        	    android:layout_gravity="center_vertical"
-        	    android:layout_weight=".20"
-        	    android:text="1(Weak)"/>
-        	
-        	<TextView 
-        	    android:id="@+id/poor_score"
-        	    android:layout_width="0dp"
-        	    android:layout_height="wrap_content"
-        	    android:layout_gravity="center_vertical"
-        	    android:layout_weight=".20"
-        	    android:text="2(Poor)"/>
-        	
-        	<TextView 
-        	    android:id="@+id/good_score"
-        	    android:layout_width="0dp"
-        	    android:layout_height="wrap_content"
-        	    android:layout_gravity="center_vertical"
-        	    android:layout_weight=".20"
-        	    android:text="3(Good)"/>
-        	
-        	<TextView 
-        	    android:id="@+id/excellent_score"
-        	    android:layout_width="0dp"
-        	    android:layout_height="wrap_content"
-        	    android:layout_gravity="center_vertical"
-        	    android:layout_weight=".20"
-        	    android:text="4(Excellent)"/>
-        	
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/blank_space"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight=".20"
+            android:text="Toggle Major"
+            android:textSize="12sp" 
+            android:onClick="toggleMajor"/>
+
+        <TextView
+            android:id="@+id/weak_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="1(Weak)" />
+
+        <TextView
+            android:id="@+id/poor_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="2(Poor)" />
+
+        <TextView
+            android:id="@+id/good_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="3(Good)" />
+
+        <TextView
+            android:id="@+id/excellent_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".20"
+            android:text="4(Excellent)" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:id="@+id/row1"
         android:layout_width="fill_parent"
@@ -122,7 +126,7 @@
         android:weightSum="1" >
 
         <TextView
-            android:id="@+id/derive_check"
+            android:id="@+id/outcome1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -147,7 +151,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".20" />
-        
+
         <RadioButton
             android:id="@+id/RadioButton14"
             android:layout_width="0dp"
@@ -167,7 +171,7 @@
         android:weightSum="1" >
 
         <TextView
-            android:id="@+id/identify_check"
+            android:id="@+id/outcome2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -192,13 +196,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".20" />
-        
+
         <RadioButton
             android:id="@+id/RadioButton24"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".20" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -212,7 +215,7 @@
         android:weightSum="1" >
 
         <TextView
-            android:id="@+id/design_check"
+            android:id="@+id/outcome3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -237,7 +240,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".20" />
-        
+
         <RadioButton
             android:id="@+id/RadioButton34"
             android:layout_width="0dp"
@@ -254,12 +257,12 @@
         android:text="The above evaluation is based on:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <EditText 
+    <EditText
         android:id="@+id/evaluation_basis"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/evaluation_basis_label"
-        android:inputType="text"/>
+        android:inputType="text" />
 
 </RelativeLayout>

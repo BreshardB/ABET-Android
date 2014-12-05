@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:onClick="goToLogin" />
 
     <Button
         android:id="@+id/sign_up"
@@ -47,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/sign_up"
         android:layout_below="@+id/sign_up"
-        android:text="@string/create" />
+        android:text="@string/create" 
+        android:onClick="createForm"/>
 
     <Button
         android:id="@+id/ABET_link"

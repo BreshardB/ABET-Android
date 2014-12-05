@@ -1,7 +1,16 @@
 package com.example.abetaccreditation;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.UnknownHostException;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -11,9 +20,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
@@ -63,20 +69,49 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.test) {
+			
+		URL url;
+			
+		try {
+			url = new URL("http://104.155.193.216:3000/courses/courseList/cse1341");
+
+			new GetCourseList().execute(url, null, null);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		}
+	}
+	
+	private class GetCourseList extends AsyncTask<URL, String, String> {
+		protected String doInBackground(URL... urls) {
+			HttpURLConnection con;
+			
+			String result = null;
 			try {
-				mongo = new MongoClient("130.211.251.72", 27017);
-				
-				DB db = mongo.getDB("abet");
-				
-				DBCollection collection = db.getCollection("courseOutcomes");
-				DBObject myDoc = collection.findOne();
-				
-				dataOutput.setText(myDoc.toString());
-				
-			} catch (UnknownHostException e) {
+				con = (HttpURLConnection)urls[0].openConnection();
+				InputStream in = new BufferedInputStream(con.getInputStream());
+		    	BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		    	 
+		    	StringBuilder jsonString = new StringBuilder();
+		    	 
+		    	String line = null;
+		    	while ((line = reader.readLine()) != null) {
+		    		jsonString.append(line);
+		    	}
+		    	result = jsonString.toString();
+		    	
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-	}
+			
+			return result;
+	    }
+
+	    protected void onPostExecute(String result) {
+	    	dataOutput.setText(result);
+	    }
+	 }
 }

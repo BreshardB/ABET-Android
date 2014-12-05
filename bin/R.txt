@@ -237,6 +237,7 @@ int id RadioButton31 0x7f05005d
 int id RadioButton32 0x7f05005e
 int id RadioButton33 0x7f05005f
 int id RadioButton34 0x7f050060
+int id abet_table 0x7f050063
 int id action_bar 0x7f05001c
 int id action_bar_activity_content 0x7f050015
 int id action_bar_container 0x7f05001b
@@ -248,7 +249,7 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050066
+int id action_settings 0x7f050067
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
@@ -289,7 +290,7 @@ int id outcome2 0x7f050056
 int id outcome3 0x7f05005c
 int id outcome_text 0x7f050048
 int id outome_label 0x7f050047
-int id password 0x7f050064
+int id password 0x7f050065
 int id poor_score 0x7f05004d
 int id progress_circular 0x7f050018
 int id progress_horizontal 0x7f050019
@@ -317,7 +318,7 @@ int id showHome 0x7f050004
 int id showTitle 0x7f050006
 int id sign_up 0x7f05003f
 int id split_action_bar 0x7f05001e
-int id submit 0x7f050065
+int id submit 0x7f050066
 int id submit_area 0x7f050039
 int id tabMode 0x7f050002
 int id test 0x7f05003c
@@ -327,7 +328,7 @@ int id title_row 0x7f050049
 int id top_action_bar 0x7f050020
 int id up 0x7f050021
 int id useLogo 0x7f050003
-int id username 0x7f050063
+int id username 0x7f050064
 int id weak_score 0x7f05004c
 int id withText 0x7f05000c
 int integer abc_max_action_buttons 0x7f090000

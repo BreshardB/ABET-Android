@@ -60,7 +60,6 @@
         android:layout_alignBaseline="@+id/outome_label"
         android:layout_alignBottom="@+id/outome_label"
         android:layout_toRightOf="@+id/outome_label"
-        android:text="blah blah blah blah blah blah blah blah"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
@@ -264,5 +263,13 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/evaluation_basis_label"
         android:inputType="text" />
+    
+    <TableLayout 
+        android:id="@+id/abet_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+        
+    </TableLayout>
 
 </RelativeLayout>

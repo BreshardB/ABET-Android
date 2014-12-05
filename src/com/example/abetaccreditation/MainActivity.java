@@ -1,18 +1,20 @@
 package com.example.abetaccreditation;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,9 +75,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			URL url;
 				
 			try {
-				url = new URL("http://104.155.193.216:3000/courses/courseList/cse1341");
+				url = new URL("http://104.155.193.216:3000/evaluations/insert");
 	
-				new GetCourseList().execute(url, null, null);
+				new SendData().execute(url);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -84,25 +86,40 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		}
 	}
 	
-	private class GetCourseList extends AsyncTask<URL, String, String> {
+	private class SendData extends AsyncTask<URL, String, String> {
 		protected String doInBackground(URL... urls) {
 			HttpURLConnection con;
 			
 			String result = null;
 			try {
 				con = (HttpURLConnection)urls[0].openConnection();
-				InputStream in = new BufferedInputStream(con.getInputStream());
-		    	BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-		    	 
-		    	StringBuilder jsonString = new StringBuilder();
-		    	 
-		    	String line = null;
-		    	while ((line = reader.readLine()) != null) {
-		    		jsonString.append(line);
-		    	}
-		    	result = jsonString.toString();
+				con.setRequestMethod("POST");
+				con.setDoInput(true);
+				con.setDoOutput(true);
+				//con.setRequestProperty("Content-Type", "application/json");
+				con.setUseCaches(false);
+				//con.setRequestProperty("Accept", "application/json");
+				con.connect();
+				
+				JSONObject obj = new JSONObject();
+				obj.put("user", "coyle");
+				obj.put("password", "teacher");
+				
+		    	/*OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
+		    	wr.write(obj.toString());
+		    	wr.flush();
+		    	wr.close();*/
+				DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+				dos.writeBytes("{'name': 'coyle'}");
+				dos.flush();
+				dos.close();
+				
+				Log.d("response", con.getResponseMessage());
 		    	
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -111,7 +128,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	    }
 
 	    protected void onPostExecute(String result) {
-	    	dataOutput.setText(result);
+	    	Log.d("POST", "Sent it");
 	    }
 	 }
 

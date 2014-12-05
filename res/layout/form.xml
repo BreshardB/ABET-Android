@@ -129,5 +129,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/evaluation_basis_label2"
         android:inputType="text" />
+    
 
 </RelativeLayout>

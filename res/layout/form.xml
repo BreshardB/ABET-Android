@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/class_code"
+        android:layout_below="@id/class_code"
         android:text="Instructor:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -29,9 +29,9 @@
         android:id="@+id/instructor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/instructor_label"
-        android:layout_alignBottom="@+id/instructor_label"
-        android:layout_toRightOf="@+id/class_code"
+        android:layout_alignBaseline="@id/instructor_label"
+        android:layout_alignBottom="@id/instructor_label"
+        android:layout_toRightOf="@id/class_code"
         android:text="Name"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/instructor_label"
+        android:layout_below="@id/instructor_label"
         android:text="Outcome:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -57,9 +57,9 @@
         android:id="@+id/outcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/outome_label"
-        android:layout_alignBottom="@+id/outome_label"
-        android:layout_toRightOf="@+id/outome_label"
+        android:layout_alignBaseline="@id/outome_label"
+        android:layout_alignBottom="@id/outome_label"
+        android:layout_toRightOf="@id/outome_label"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
@@ -208,7 +208,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/row2"
+        android:layout_below="@id/row2"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="1" >
@@ -252,7 +252,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/row3"
+        android:layout_below="@id/row3"
         android:text="The above evaluation is based on:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -261,14 +261,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/evaluation_basis_label"
+        android:layout_below="@id/evaluation_basis_label"
         android:inputType="text" />
     
     <TableLayout 
         android:id="@+id/abet_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="1">
+        android:layout_above="@id/evaluation_basis"
+        android:stretchColumns="*">
         
     </TableLayout>
 

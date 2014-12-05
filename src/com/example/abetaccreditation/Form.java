@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,14 +15,17 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class Form extends Activity implements AsyncResponse{
 	
 	TextView instructorName;
 	TextView outcomeText;
+	TableLayout abetTable;
 	
 	String major;
 	StringBuilder jsonArray;
@@ -65,8 +67,8 @@ public class Form extends Activity implements AsyncResponse{
 		jsonArray = new StringBuilder();
 		
 		try {
-			url = new URL("http://104.155.193.216:3000/outcomes");
-			task.execute(url);
+			/*url = new URL("http://104.155.193.216:3000/outcomes");
+			task.execute(url);*/
 			
 			url = new URL("http://104.155.193.216:3000/outcomes/rubrics/C");
 			task.execute(url);
@@ -142,6 +144,40 @@ public class Form extends Activity implements AsyncResponse{
 			outcomeText.setText(outcomes.getJSONObject(0).getString("descriptionCAC"));*/
 			//Log.d("outcome", outcomes.getJSONObject(0).toString());
 			
+			rubrics = new JSONArray(jsonArray.toString());
+			JSONArray courseRubricEAC = (JSONArray)rubrics.getJSONObject(0).getJSONArray("rubricsEAC");
+			JSONArray courseRubricCAC = (JSONArray)rubrics.getJSONObject(0).getJSONArray("rubricsCAC");
+			
+			abetTable = (TableLayout)findViewById(R.id.abet_table);
+			
+			TableRow tableRow = new TableRow(this);
+			tableRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			
+			
+			TextView description = new TextView(this.getApplicationContext());
+			tableRow.addView(description);
+			TextView unsatisfactory = new TextView(this.getApplicationContext());
+			unsatisfactory.setText("Unsatisfactory");
+			tableRow.addView(unsatisfactory);
+			TextView developing = new TextView(this.getApplicationContext());
+			developing.setText("Developing");
+			tableRow.addView(developing);
+			TextView satisfactory = new TextView(this.getApplicationContext());
+			satisfactory.setText("Satisfactory");
+			tableRow.addView(satisfactory);
+			TextView exemplary = new TextView(this.getApplicationContext());
+			exemplary.setText("Exemplary");
+			tableRow.addView(exemplary);
+			
+			abetTable.addView(tableRow);
+			
+			
+			/*for(int i = 0; i < courseRubricEAC.length(); i++){
+				TableRow tableRow = new TableRow(this);
+				tableRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+				
+				
+			}*/
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

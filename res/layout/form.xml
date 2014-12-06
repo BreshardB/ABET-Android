@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="semester"
+        android:text="Fall 2014"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -130,5 +130,13 @@
         android:layout_below="@id/evaluation_basis_label2"
         android:inputType="text" />
     
+    <Button 
+        android:id="@+id/submit_eval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Evaluation"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="SubmitEvaluation"/>
 
 </RelativeLayout>

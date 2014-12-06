@@ -1,3 +1,9 @@
+/*
+ * Authors: Bre'Shard Busby and Brendan O'Connor
+ * Date: 12/5/14
+ * MainActivity.java
+ */
+
 package com.example.abetaccreditation;
 
 import java.io.DataOutputStream;
@@ -25,8 +31,6 @@ import android.widget.TextView;
 import com.mongodb.MongoClient;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
-	
-	MongoClient mongo;
 	
 	Button testButton;
 	Button loginButton;
@@ -68,6 +72,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		return super.onOptionsItemSelected(item);
 	}
 
+	//Click event handler for a test button
 	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.test) {
@@ -86,6 +91,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		}
 	}
 	
+	//Asynchronous task used to test sending data back and forth to
+	//the database using the API
 	private class SendData extends AsyncTask<URL, String, String> {
 		protected String doInBackground(URL... urls) {
 			HttpURLConnection con;
@@ -96,19 +103,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 				con.setRequestMethod("POST");
 				con.setDoInput(true);
 				con.setDoOutput(true);
-				//con.setRequestProperty("Content-Type", "application/json");
 				con.setUseCaches(false);
-				//con.setRequestProperty("Accept", "application/json");
 				con.connect();
 				
 				JSONObject obj = new JSONObject();
 				obj.put("user", "coyle");
 				obj.put("password", "teacher");
-				
-		    	/*OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
-		    	wr.write(obj.toString());
-		    	wr.flush();
-		    	wr.close();*/
+
 				DataOutputStream dos = new DataOutputStream(con.getOutputStream());
 				dos.writeBytes("{'name': 'coyle'}");
 				dos.flush();
@@ -132,11 +133,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 	    }
 	 }
 
+	//Intent to navigate to login page
 	public void goToLogin(View view){
     	Intent intent = new Intent(this, Login.class);
     	startActivity(intent);
     }
     
+	//Intent to create form
     public void createForm(View view){
     	Intent intent = new Intent(this, Form.class);
     	startActivity(intent);

@@ -1,21 +1,34 @@
+/*
+ * Authors: Bre'Shard Busby and Brendan O'Connor
+ * Date: 12/5/14
+ * Form.java
+ */
+
 package com.example.abetaccreditation;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.JsonWriter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
@@ -23,6 +36,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class Form extends Activity implements AsyncResponse{
 	
 	TextView instructorName;
@@ -36,7 +50,7 @@ public class Form extends Activity implements AsyncResponse{
 	JSONArray outcomes;
 	JSONArray rubrics;
 	
-	GetCourseOutcomes task = new GetCourseOutcomes();
+	GetCourseOutcomes task = new GetCourseOutcomes(); //Object holding asynchronous task
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +62,9 @@ public class Form extends Activity implements AsyncResponse{
         String name = getIntent().getStringExtra("USERNAME");
         instructorName.setText(name);
         
+		tableCAC = (TableLayout)findViewById(R.id.CAC_table); //Table for CAC outcomes
+		tableEAC = (TableLayout)findViewById(R.id.EAC_table); //Table for EAC outcomes
+        
         task.delegate = this;
     }
 	
@@ -57,15 +74,15 @@ public class Form extends Activity implements AsyncResponse{
 		setOutcomes();
 	}
 	
+	//Populates the table with the necessary outcomes
 	public void setOutcomes(){
 		
 		URL url;
 		jsonArray = new StringBuilder();
 		
 		try {
-			/*url = new URL("http://104.155.193.216:3000/outcomes");
-			task.execute(url);*/
 			
+			//URL to route that obtains rubrics from the database
 			url = new URL("http://104.155.193.216:3000/outcomes/rubrics/C");
 			task.execute(url);
 			
@@ -75,6 +92,7 @@ public class Form extends Activity implements AsyncResponse{
 		} 
 	}
 	
+	//Switch between CSE and CE outcomes
 	public void toggleMajor(View view){
 		if(major.compareTo("cse") == 0){
 			major = "ce";
@@ -85,6 +103,7 @@ public class Form extends Activity implements AsyncResponse{
 		setOutcomes();
 	}
 	
+	//Asynchronous task needed to gain course outcomes and rubrics
 	private class GetCourseOutcomes extends AsyncTask<URL, Void, String> {
 		
 		public AsyncResponse delegate = null;
@@ -123,30 +142,19 @@ public class Form extends Activity implements AsyncResponse{
 		}
 	}
 
+	//Create and structure table and ready it for input
 	@Override
 	public void processFinish(String output) {
 		// TODO Auto-generated method stub
 		jsonArray.append(output);
 		
 		try {
-			/*outcomes = new JSONArray(jsonArray.toString());
-			
-			JSONArray CACoutcomes = (JSONArray)outcomes.getJSONObject(0).getJSONArray("CACOutcomes");
-			JSONArray EACoutcomes = (JSONArray)outcomes.getJSONObject(0).getJSONArray("EACOutcomes");
-			
-			Log.d("index", outcomes.getJSONObject(0).toString());
-			
-			outcomeText = (TextView)findViewById(R.id.outcome_text);
-			outcomeText.setText(outcomes.getJSONObject(0).getString("descriptionCAC"));*/
-			//Log.d("outcome", outcomes.getJSONObject(0).toString());
 			
 			rubrics = new JSONArray(jsonArray.toString());
 			JSONArray courseRubricEAC = (JSONArray)rubrics.getJSONObject(0).getJSONArray("rubricsEAC");
 			JSONArray courseRubricCAC = (JSONArray)rubrics.getJSONObject(0).getJSONArray("rubricsCAC");
 			
-			tableCAC = (TableLayout)findViewById(R.id.CAC_table);
-			tableEAC = (TableLayout)findViewById(R.id.EAC_table);
-			
+			//Headings
 			TableRow headingsCAC = new TableRow(this);
 			headingsCAC.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			TableRow headingsEAC = new TableRow(this);
@@ -255,4 +263,108 @@ public class Form extends Activity implements AsyncResponse{
 		}
 			
 	}
+	
+	//Submit evaluation input to database
+	public void SubmitEvaluation(View v){
+		
+		URL url;
+		
+		try {
+			
+			//URL used to send data through API to the database
+			url = new URL("http://104.155.193.216:3000/evaluations/insert");
+			
+		    new SendData().execute(url);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	//Asynchronous task to send data to database
+	private class SendData extends AsyncTask<URL, String, String> {
+		@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+		protected String doInBackground(URL... urls) {
+			HttpURLConnection con;
+			
+			String result = null;
+			try {
+				con = (HttpURLConnection)urls[0].openConnection();
+				con.setRequestMethod("POST");
+				con.setDoInput(true);
+				con.setDoOutput(true);
+				con.setUseCaches(false);
+				con.connect();
+
+				//Using a stream to submit JSON to circumvent lack of memory
+				JsonWriter writer = new JsonWriter(new OutputStreamWriter(con.getOutputStream(), "UTF-8"));
+
+				writer.setIndent("  ");
+				
+				//Constructing the JSON object
+				writer.beginObject();
+				writer.name("instructor").value("coyle");
+				writer.name("semeseter").value("Fall2014");
+				writer.name("course").value("cse3342");
+				writer.name("CACOutcome").value("C");
+				
+				writer.name("CACResults");
+				writer.beginArray();
+
+				//Cycle through CAC table to gain input
+				for(int i = 1; i < tableCAC.getChildCount(); i++){
+					TableRow row = (TableRow)tableCAC.getChildAt(i);
+					writer.beginArray();
+					for(int f = 1; f < row.getChildCount(); f++){
+						if(row.getChildAt(f) instanceof EditText){
+							EditText edit = (EditText)row.getChildAt(f);
+							writer.value(edit.getText().toString());
+						}
+					}
+					writer.endArray();
+					writer.flush();
+				}
+				writer.endArray();
+				
+				writer.name("EACOutcome").value("C");
+				writer.name("EACResults");
+				writer.beginArray();
+				
+				//Cycle through EAC table to gain inputs
+				for(int i = 1; i < tableEAC.getChildCount(); i++){
+					TableRow row = (TableRow)tableEAC.getChildAt(i);
+					writer.beginArray();
+					for(int f = 1; f < row.getChildCount(); f++){
+						EditText edit = (EditText)row.getChildAt(f);
+						writer.value(edit.getText().toString());
+					}
+					writer.endArray();
+					writer.flush();
+				}
+				writer.endArray();
+				
+				EditText cacBased = (EditText)findViewById(R.id.evaluation_basis1);
+				EditText eacBased = (EditText)findViewById(R.id.evaluation_basis2);
+				writer.name("cacBased").value(cacBased.getText().toString());
+				writer.name("eacBased").value(eacBased.getText().toString());
+				
+				writer.endObject(); //End creation of JSON object
+				writer.close();
+				
+				Log.d("response", con.getResponseMessage());
+		    	
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return result;
+	    }
+
+	    protected void onPostExecute(String result) {
+	    	Log.d("POST", "Sent it");
+	    }
+	 }
 }
